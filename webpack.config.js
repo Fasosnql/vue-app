@@ -5,6 +5,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TSLintPlugin = require('tslint-webpack-plugin');
+const TsConfigPathsPlugin = require('awesome-typescript-loader').TsConfigPathsPlugin;
 
 /**
  * Env
@@ -23,11 +24,8 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        loader: 'ts-loader',
-        exclude: /node_modules/,
-        options: {
-          appendTsSuffixTo: [/\.vue$/],
-        }
+        loader: 'awesome-typescript-loader',
+        exclude: /node_modules/
       },
       {
         test: /\.(scss|css)$/,
@@ -52,7 +50,7 @@ module.exports = {
     }),
     new TSLintPlugin({
       files: ['./src/**/*.ts']
-    })
+    }),
   ],
   devtool: 'eval-source-map',
   devServer: {
@@ -64,6 +62,10 @@ module.exports = {
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
-    }
+    },
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    plugins: [
+      new TsConfigPathsPlugin()
+    ]
   }
 };
