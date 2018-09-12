@@ -1,0 +1,7 @@
+<div :class="style['select-file-button']">
+    <input id="select-files"
+           type="file"
+           multiple
+           @change="onSelect($event)">
+    <label for="select-files">Select files</label>
+</div>
