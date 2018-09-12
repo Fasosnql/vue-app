@@ -2,5 +2,5 @@
         md-icon="cloud_upload"
         md-label="Upload your files"
         md-description="Please select files from your computer and upload them">
-    <md-button class="md-primary md-raised">{{text}}</md-button>
+    <input-upload :on-select="onSelect"></input-upload>
 </md-empty-state>

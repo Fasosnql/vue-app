@@ -1,0 +1,23 @@
+:local(.select-file-button) {
+  $select-bg-color: #145ece;
+
+  margin-top: 20px;
+
+  label {
+    background: $select-bg-color;
+    padding: 8px 12px;
+    color: #fff;
+    will-change: background;
+    transition: background 200ms ease;
+    cursor: pointer;
+
+    &:hover {
+      background: darken($select-bg-color, 10%);
+    }
+  }
+
+  input[type="file"] {
+    position: absolute;
+    left: -999em;
+  }
+}
