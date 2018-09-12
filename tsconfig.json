@@ -18,14 +18,8 @@
       "modules/*": [
         "./src/components/modules/*"
       ],
-      "containers/*": [
-        "./src/components/containers/*"
-      ],
       "configs/*": [
         "./src/configs/*"
-      ],
-      "utils/*": [
-        "./src/utils/*"
       ]
     }
   },
