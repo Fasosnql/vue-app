@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": false,
+    "lib": [
+      "dom",
+      "es6"
+    ],
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "baseUrl": ".",
+    "paths": {
+      "modules/*": [
+        "./src/components/modules/*"
+      ],
+      "containers/*": [
+        "./src/components/containers/*"
+      ],
+      "configs/*": [
+        "./src/configs/*"
+      ],
+      "utils/*": [
+        "./src/utils/*"
+      ]
+    }
+  },
+  "typeRoots": [
+    "node_modules/@types"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
