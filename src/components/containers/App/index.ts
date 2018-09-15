@@ -4,6 +4,7 @@ import UploadFilesAdapter from 'adapters/upload-files.adapter';
 //components
 import inputSelect from 'modules/select-file-button/index';
 import filesListTable from 'modules/files-list-table/index';
+import Button from 'modules/button/index';
 
 export default {
   template: require('./app.html'),
@@ -21,11 +22,15 @@ export default {
       });
     },
     resetList() {
-      this.fileList = [];
+      this.filesList = [];
+    },
+    uploadFiles() {
+      //TODO upload
     }
   },
   components: {
     inputSelect,
-    filesListTable
+    filesListTable,
+    Button
   }
 }
