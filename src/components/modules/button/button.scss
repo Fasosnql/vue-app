@@ -1,0 +1,29 @@
+:local(.button) {
+  $default-bg-color: #00974c;
+  $reset-bg-color: #444d4d;
+
+  margin: 5px;
+  min-width: 120px;
+
+  button {
+    width: 100%;
+    background: $default-bg-color;
+    padding: 8px 12px;
+    color: #fff;
+    will-change: background;
+    transition: background 200ms ease;
+    cursor: pointer;
+    border: 0;
+
+    &:hover {
+      background: darken($default-bg-color, 10%);
+    }
+
+    &.reset {
+      background: $reset-bg-color;
+      &:hover {
+        background: darken($reset-bg-color, 10%);
+      }
+    }
+  }
+}
