@@ -15,6 +15,9 @@
     "suppressImplicitAnyIndexErrors": true,
     "baseUrl": ".",
     "paths": {
+      "adapters/*": [
+        "./src/adapters/*"
+      ],
       "modules/*": [
         "./src/components/modules/*"
       ],
