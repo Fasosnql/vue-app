@@ -1,6 +1,10 @@
 <md-empty-state
         md-icon="cloud_upload"
         md-label="Upload your files"
-        md-description="Please select files from your computer and upload them">
-    <input-upload :on-select="onSelect"></input-upload>
+        v-bind:md-description="!filesList.length ? 'Please select files from your computer and upload them' : ''">
+    <input-select v-if="!filesList.length"
+                  :on-select="onSelect"></input-select>
+
+    <files-list-table :files-list="filesList"
+                      v-if="filesList.length"></files-list-table>
 </md-empty-state>

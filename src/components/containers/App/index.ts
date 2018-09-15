@@ -1,19 +1,31 @@
-import Vue from 'vue'
-import { MdEmptyState, MdIcon } from 'vue-material/dist/components'
+//adapters
+import UploadFilesAdapter from 'adapters/upload-files.adapter';
 
-import inputUpload from 'modules/select-file-button/index';
-
-Vue.use(MdEmptyState);
-Vue.use(MdIcon);
+//components
+import inputSelect from 'modules/select-file-button/index';
+import filesListTable from 'modules/files-list-table/index';
 
 export default {
   template: require('./app.html'),
+  data: () => ({
+    uploadFilesAdapter: null,
+    filesList: []
+  }),
+  created() {
+    this.uploadFilesAdapter = new UploadFilesAdapter();
+  },
   methods: {
     onSelect(e) {
-      //TODO: handler on select
+      this.uploadFilesAdapter.getFilesList(e.target.files).then((response) => {
+        this.filesList = response;
+      });
+    },
+    resetList() {
+      this.fileList = [];
     }
   },
   components: {
-    inputUpload
+    inputSelect,
+    filesListTable
   }
 }

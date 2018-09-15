@@ -1,0 +1,17 @@
+<div :class="style['files-list-table']">
+    <md-table>
+        <md-table-row>
+            <md-table-head>Name</md-table-head>
+            <md-table-head>Type</md-table-head>
+            <md-table-head></md-table-head>
+        </md-table-row>
+
+        <md-table-row v-for="file in filesList" :key="file.id">
+            <md-table-cell>{{file.name}}</md-table-cell>
+            <md-table-cell>{{file.type}}</md-table-cell>
+            <md-table-cell>
+                <img v-if="file.thumbnailURL" :src="file.thumbnailURL" alt="">
+            </md-table-cell>
+        </md-table-row>
+    </md-table>
+</div>
