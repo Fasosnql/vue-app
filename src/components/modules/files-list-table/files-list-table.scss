@@ -4,4 +4,30 @@
   .image-size {
     min-width: 50px;
   }
+
+  .name, .type, .thumbnail {
+    display: inline-block;
+    font-size: 12px;
+  }
+  .name {
+    width: 100px;
+    word-break: break-all;
+    overflow: hidden;
+    white-space: normal;
+    margin-right: 30px;
+  }
+  .type {
+    width: 100px;
+    word-break: break-all;
+    overflow: hidden;
+    white-space: normal;
+    margin-right: 30px;
+  }
+  .thumbnail {
+    width: 100px;
+  }
+
+  .list-item {
+    border-top: 1px solid rgba(0,0,0,.2);
+  }
 }
