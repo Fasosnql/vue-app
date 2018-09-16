@@ -6,6 +6,7 @@ import UploadFilesAdapter from 'adapters/upload-files.adapter';
 import inputSelect from 'modules/select-file-button/index';
 import filesListTable from 'modules/files-list-table/index';
 import Button from 'modules/button/index';
+import loader from 'modules/loader/index';
 
 //configs
 import config from 'configs/config';
@@ -17,15 +18,18 @@ export default {
     uploadFilesAdapter: null,
     filesList: [],
     uploading: false,
-    uploadsComplete: false
+    uploadsComplete: false,
+    loading: false
   }),
   created() {
     this.uploadFilesAdapter = new UploadFilesAdapter();
   },
   methods: {
     onSelect(e) {
+      this.loading = true;
       this.uploadFilesAdapter.getFilesList(e.target.files).then((response) => {
         this.filesList = response;
+        this.loading = false;
       });
     },
     resetList() {
@@ -65,6 +69,7 @@ export default {
   components: {
     inputSelect,
     filesListTable,
-    Button
+    Button,
+    loader
   }
 }
