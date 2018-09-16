@@ -38,7 +38,7 @@ export default class UploadFilesAdapter implements uploadFilesInterface {
     const returnArr = [];
     let index = 0;
 
-    for (let file of files) {
+    for (const file of files) {
       returnArr.push({
         id: index,
         name: file.name,
@@ -55,7 +55,7 @@ export default class UploadFilesAdapter implements uploadFilesInterface {
         returnArr[index].thumbnailURL = await this.getImageSrc(file);
       }
 
-      index++;
+      index += 1;
     }
 
     return returnArr;
