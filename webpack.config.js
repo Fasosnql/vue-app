@@ -14,9 +14,15 @@ const TsConfigPathsPlugin = require('awesome-typescript-loader').TsConfigPathsPl
 const ENV = process.env.npm_lifecycle_event;
 const isProd = ENV === 'build';
 const isTest = ENV === 'test';
+const distDir = '/dist';
 
-module.exports = {
+const config = {
   entry: isTest ? void 0 : './src/app.ts',
+  output: isTest ? {} : {
+    path: __dirname + distDir,
+    publicPath: '/',
+    filename: '[name].js'
+  },
   module: {
     rules: [
       {
@@ -31,7 +37,7 @@ module.exports = {
       {
         test: /\.(scss|css)$/,
         use: [{
-          loader: isProd ? MiniCssExtractPlugin.loader : 'style-loader'
+          loader: 'style-loader'
         }, {
           loader: 'css-loader'
         }, {
@@ -48,10 +54,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
       inject: 'body'
-    }),
-    new TSLintPlugin({
-      files: ['./src/**/*.ts']
-    }),
+    })
   ],
   devtool: 'eval-source-map',
   devServer: {
@@ -70,3 +73,13 @@ module.exports = {
     ]
   }
 };
+
+if (!isProd) {
+  config.plugins.push(
+    new TSLintPlugin({
+      files: ['./src/**/*.ts']
+    })
+  );
+}
+
+module.exports = config;
