@@ -48,7 +48,7 @@ export default {
         let lastUploadedBytes;
 
         requests.push(
-          this.uploadFilesAdapter.uploadFile(file, (e, b) => {
+          this.uploadFilesAdapter.uploadFile(file, (e) => {
             const calculatedSpeed = calculateSpeedUpload(file.size, e.totalBytes, lastTime, lastUploadedBytes);
             if (calculatedSpeed) {
               file.speed = calculatedSpeed;
