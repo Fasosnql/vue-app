@@ -8,6 +8,7 @@ export default {
   props: {
     onClick: Function,
     text: String,
-    type: String
+    type: String,
+    disabled: Boolean
   }
 }

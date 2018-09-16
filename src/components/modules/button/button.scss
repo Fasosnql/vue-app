@@ -25,5 +25,13 @@
         background: darken($reset-bg-color, 10%);
       }
     }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: initial;
+      &:hover {
+        background: $default-bg-color;
+      }
+    }
   }
 }
