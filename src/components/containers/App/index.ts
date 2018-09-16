@@ -6,11 +6,16 @@ import inputSelect from 'modules/select-file-button/index';
 import filesListTable from 'modules/files-list-table/index';
 import Button from 'modules/button/index';
 
+//configs
+import config from 'configs/config';
+
 export default {
   template: require('./app.html'),
   data: () => ({
     uploadFilesAdapter: null,
-    filesList: []
+    filesList: [],
+    uploading: false,
+    uploadsComplete: false
   }),
   created() {
     this.uploadFilesAdapter = new UploadFilesAdapter();
@@ -25,7 +30,34 @@ export default {
       this.filesList = [];
     },
     uploadFiles() {
-      //TODO upload
+      this.uploading = true;
+
+      const requests = [];
+      this.filesList.map((file) => {
+        requests.push(
+          this.uploadFilesAdapter.uploadFile(file, (e) => {
+            file.progressData = e;
+          }).then((response) => {
+            if (response.mimetype === 'image/jpeg') {
+              this.uploadFilesAdapter.getExifData(response.handle, {
+                policy: config.filestackPolicy,
+                signature: config.filestackSignature,
+              }).then((response) => {
+                file.exifData = response.exif;
+              });
+            }
+          })
+        );
+      });
+
+      Promise.all(requests).then(() => {
+        this.uploading = false;
+        this.uploadsComplete = true;
+      });
+    },
+    newUpload() {
+      this.resetList();
+      this.uploadsComplete = false;
     }
   },
   components: {

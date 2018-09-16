@@ -2,23 +2,36 @@ import * as filestack from 'filestack-js';
 
 import {
   uploadFilesInterface,
-  filesList
+  filesList,
+  filestackSecurity
 } from './upload-files.adapter.interface';
 
 import config from 'configs/config';
 import fileTypes from 'configs/fileTypes';
 
 export default class UploadFilesAdapter implements uploadFilesInterface {
-  public client:object;
+  public client;
+  private filesProp;
 
   constructor() {
     this.client = filestack.init(config.filestackKey);
   }
 
   public getFilesList(filesProp):Promise<filesList[]> {
+    this.filesProp = filesProp;
     const files:any = Array.from(filesProp);
 
     return this.processFilesList(files);
+  }
+
+  public uploadFile(file, onProgress):Promise<any> {
+    const fileToUpload = this.filesProp.item(file.id);
+
+    return this.client.upload(fileToUpload, { onProgress });
+  }
+
+  public getExifData(handle: string, security: filestackSecurity) {
+    return this.client.metadata(handle, {exif: true}, security);
   }
 
   private async processFilesList(files):Promise<filesList[]> {
@@ -29,7 +42,10 @@ export default class UploadFilesAdapter implements uploadFilesInterface {
       returnArr.push({
         id: index,
         name: file.name,
-        type: file.type
+        type: file.type,
+        progressData: {},
+        exifData: {},
+        url: '',
       });
 
       if (fileTypes.image.indexOf(file.type) !== -1) {
