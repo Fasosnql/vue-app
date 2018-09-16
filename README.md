@@ -18,6 +18,6 @@ $ npm install
 
 
 ## Run app via Docker
-`docker build -t vue/dockerize-vue-app .` - build docker image
-`docker run -it -p 8080:8080 --rm --name dockerize-vue-app-1 vue/dockerize-vue-app` - run bundle app on port `8080`
+`$ docker build -t vue/dockerize-vue-app .` - build docker image
+`$ docker run -it -p 8080:8080 --rm --name dockerize-vue-app-1 vue/dockerize-vue-app` - run bundle app on port `8080`
 
