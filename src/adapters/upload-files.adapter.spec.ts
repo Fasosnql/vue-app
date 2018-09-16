@@ -19,7 +19,9 @@ describe('Upload file adapter', () => {
 
   it('should call getExifData to return filestack metadata promise', (done) => {
     const uploadFilesAdaper = new UploadFilesAdapter();
-    uploadFilesAdaper.getExifData('id', {policy: '1', signature: '2'}).then(() => {}, (err) => {
+    uploadFilesAdaper.getExifData('id', {policy: '1', signature: '2'}).then(() => {
+      done();
+    }, (err) => {
       assert.ok(err);
       done();
     })

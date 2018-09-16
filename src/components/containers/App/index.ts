@@ -4,6 +4,7 @@ import UploadFilesAdapter from 'adapters/upload-files.adapter';
 
 //utils
 import readExifData from 'utils/read-exif-data';
+import calculateSpeedUpload from 'utils/calculate-speed-upload';
 
 //components
 import inputSelect from 'modules/select-file-button/index';
@@ -41,13 +42,22 @@ export default {
     uploadFiles() {
       this.uploading = true;
       const requests = [];
+      let lastTime;
+      let lastUploadedBytes;
 
       this.filesList.map((file) => {
         requests.push(
-          this.uploadFilesAdapter.uploadFile(file, (e) => {
+          this.uploadFilesAdapter.uploadFile(file, (e, b) => {
+            const calculatedSpeed = calculateSpeedUpload(file.size, e.totalBytes, lastTime, lastUploadedBytes);
+            if (calculatedSpeed) {
+              file.speed = calculatedSpeed;
+            }
             file.progressData = e;
+            lastTime = (new Date()).getTime();
+            lastUploadedBytes = e.totalBytes;
           }).then((response) => {
             file.url = response.url;
+            file.speed = 0;
 
             if (response.mimetype === 'image/jpeg') {
               this.uploadFilesAdapter.getExifData(response.handle, {
