@@ -1,7 +1,18 @@
-<div :class="style['progress']">
-    <div class="percent-data">{{progress.totalPercent || 0}}%</div>
-    <div class="progress-container">
-        <div class="bar"
-             v-bind:style="{width: progress.totalPercent + '%'}"></div>
+<div>
+    <div :class="style['progress']">
+        <div class="percent-data">{{progress.totalPercent || 0}}%</div>
+        <div class="progress-container">
+            <div class="bar"
+                 v-bind:style="{width: progress.totalPercent + '%'}"></div>
+        </div>
+    </div>
+
+    <div :class="style['live-upload-data']">
+        <div class="bytes">
+            {{progress.totalBytes || 0}} of {{size}} bytes
+        </div>
+        <div class="speed" v-if="progress.totalBytes">
+            Speed: {{speed}}
+        </div>
     </div>
 </div>

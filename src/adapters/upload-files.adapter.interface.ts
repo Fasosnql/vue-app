@@ -6,7 +6,9 @@ export interface filesList {
   hasExifData: boolean,
   exifData: object,
   progressData: object,
-  url: string
+  url: string,
+  size: number,
+  speed: number
 }
 
 export interface uploadFilesInterface {

@@ -38,3 +38,23 @@
     float: right;
   }
 }
+
+:local(.live-upload-data) {
+  width: 80%;
+  font-size: 12px;
+  color: rgba(0,0,0,.5);
+
+  &:after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+
+  .bytes {
+    float: left;
+  }
+
+  .speed {
+    float: right;
+  }
+}

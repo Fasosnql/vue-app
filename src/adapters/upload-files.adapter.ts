@@ -47,6 +47,8 @@ export default class UploadFilesAdapter implements uploadFilesInterface {
         hasExifData: false,
         exifData: {},
         url: '',
+        size: file.size,
+        speed: 0
       });
 
       if (fileTypes.image.indexOf(file.type) !== -1) {

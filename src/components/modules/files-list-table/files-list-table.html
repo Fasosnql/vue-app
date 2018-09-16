@@ -19,7 +19,16 @@
                          alt="">
                 </div>
             </md-list-item>
-            <Progress v-bind:progress="file.progressData"></Progress>
+            <Progress v-bind:progress="file.progressData"
+                      v-bind:size="file.size"
+                      v-bind:speed="file.speed"></Progress>
+
+            <div class="uploaded-url" v-if="file.url">
+                <div class="header-url">Uploaded on:</div>
+                <div class="link">
+                    {{file.url}}
+                </div>
+            </div>
 
             <div class="exif-data"
                  v-for="exif in file.exifData"

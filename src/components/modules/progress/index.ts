@@ -6,6 +6,8 @@ export default {
     style,
   }),
   props: {
-    progress: {}
+    progress: {},
+    size: 0,
+    speed: 0
   }
 }

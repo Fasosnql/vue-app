@@ -40,13 +40,16 @@ export default {
     },
     uploadFiles() {
       this.uploading = true;
-
+      let uploaded = 0;
+      let lastUpTime = 0;
       const requests = [];
       this.filesList.map((file) => {
         requests.push(
           this.uploadFilesAdapter.uploadFile(file, (e) => {
             file.progressData = e;
           }).then((response) => {
+            file.url = response.url;
+
             if (response.mimetype === 'image/jpeg') {
               this.uploadFilesAdapter.getExifData(response.handle, {
                 policy: config.filestackPolicy,

@@ -40,4 +40,15 @@
       color: rgba(0,0,0,.5);
     }
   }
+
+  .uploaded-url {
+    background: rgba(0,0,0,.1);
+    padding: 8px 10px;
+    color: rgba(0,0,0,.6);
+    margin: 10px 0;
+
+    .link {
+      font-size: 12px;
+    }
+  }
 }
