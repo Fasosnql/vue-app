@@ -3,6 +3,7 @@ export interface filesList {
   name: string,
   type: string,
   thumbnailURL?: string,
+  hasExifData: boolean,
   exifData: object,
   progressData: object,
   url: string

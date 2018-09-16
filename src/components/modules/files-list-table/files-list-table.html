@@ -20,6 +20,12 @@
                 </div>
             </md-list-item>
             <Progress v-bind:progress="file.progressData"></Progress>
+
+            <div class="exif-data"
+                 v-for="exif in file.exifData"
+                 :key="exif.name">
+                <span class="label">{{exif.name}}</span>: {{exif.value}}
+            </div>
         </div>
     </md-list>
 </div>

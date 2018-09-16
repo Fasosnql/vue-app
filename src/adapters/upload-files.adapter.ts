@@ -44,6 +44,7 @@ export default class UploadFilesAdapter implements uploadFilesInterface {
         name: file.name,
         type: file.type,
         progressData: {},
+        hasExifData: false,
         exifData: {},
         url: '',
       });

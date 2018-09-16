@@ -2,6 +2,9 @@ import * as style from './app.scss';
 //adapters
 import UploadFilesAdapter from 'adapters/upload-files.adapter';
 
+//utils
+import readExifData from 'utils/read-exif-data';
+
 //components
 import inputSelect from 'modules/select-file-button/index';
 import filesListTable from 'modules/files-list-table/index';
@@ -49,7 +52,8 @@ export default {
                 policy: config.filestackPolicy,
                 signature: config.filestackSignature,
               }).then((response) => {
-                file.exifData = response.exif;
+                file.exifData = readExifData(response.exif);
+                file.hasExifData = !!file.exifData.length;
               });
             }
           })

@@ -26,6 +26,9 @@
       ],
       "configs/*": [
         "./src/configs/*"
+      ],
+      "utils/*": [
+        "./src/utils/*"
       ]
     }
   },
