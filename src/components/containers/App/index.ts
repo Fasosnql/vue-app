@@ -42,10 +42,11 @@ export default {
     uploadFiles() {
       this.uploading = true;
       const requests = [];
-      let lastTime;
-      let lastUploadedBytes;
 
       this.filesList.map((file) => {
+        let lastTime;
+        let lastUploadedBytes;
+
         requests.push(
           this.uploadFilesAdapter.uploadFile(file, (e, b) => {
             const calculatedSpeed = calculateSpeedUpload(file.size, e.totalBytes, lastTime, lastUploadedBytes);
