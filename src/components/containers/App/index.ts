@@ -1,3 +1,4 @@
+import * as style from './app.scss';
 //adapters
 import UploadFilesAdapter from 'adapters/upload-files.adapter';
 
@@ -12,6 +13,7 @@ import config from 'configs/config';
 export default {
   template: require('./app.html'),
   data: () => ({
+    style,
     uploadFilesAdapter: null,
     filesList: [],
     uploading: false,

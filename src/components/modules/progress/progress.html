@@ -1,0 +1,7 @@
+<div :class="style['progress']">
+    <div class="percent-data">{{progress.totalPercent || 0}}%</div>
+    <div class="progress-container">
+        <div class="bar"
+             v-bind:style="{width: progress.totalPercent + '%'}"></div>
+    </div>
+</div>

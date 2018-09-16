@@ -1,26 +1,27 @@
-<md-empty-state
-        md-icon="cloud_upload"
-        md-label="Upload your files"
-        v-bind:md-description="!filesList.length ? 'Please select files from your computer and upload them' : 'Your files to upload:'">
-    <input-select v-if="!filesList.length"
-                  :on-select="onSelect"></input-select>
+<div :class="style['app']">
+    <md-empty-state
+            md-icon="cloud_upload"
+            md-label="Upload your files"
+            v-bind:md-description="!filesList.length ? 'Please select files from your computer and upload them' : 'Your files to upload:'">
+        <input-select v-if="!filesList.length"
+                      :on-select="onSelect"></input-select>
 
-    <files-list-table :files-list="filesList"
-                      v-if="filesList.length"></files-list-table>
+        <files-list-table :files-list="filesList"
+                          v-if="filesList.length"></files-list-table>
 
-    <div v-if="!uploadsComplete && filesList.length">
-        <Button :on-click="uploadFiles"
-                :disabled="uploading"
-                v-bind:text="uploading ? 'Uploading...' : 'Upload'"></Button>
-        <Button :on-click="resetList"
-                type="reset"
-                text="Clear list"></Button>
-    </div>
-    <div v-if="uploadsComplete">
-        <md-toolbar class="md-primary md-dense">
-            <h3 class="md-title">All files was uploaded.</h3>
-        </md-toolbar>
-        <Button :on-click="newUpload"
-                text="Upload more files"></Button>
-    </div>
-</md-empty-state>
+        <div v-if="!uploadsComplete && filesList.length">
+            <Button :on-click="uploadFiles"
+                    :disabled="uploading"
+                    v-bind:text="uploading ? 'Uploading...' : 'Upload'"></Button>
+            <Button v-if="!uploading"
+                    :on-click="resetList"
+                    type="reset"
+                    text="Clear list"></Button>
+        </div>
+        <div v-if="uploadsComplete">
+            <div class="upload-complete-info">All files was uploaded.</div>
+            <Button :on-click="newUpload"
+                    text="Upload more files"></Button>
+        </div>
+    </md-empty-state>
+</div>

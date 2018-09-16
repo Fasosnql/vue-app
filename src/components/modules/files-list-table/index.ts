@@ -1,5 +1,7 @@
 import * as style from './files-list-table.scss';
 
+import Progress from 'modules/progress/index';
+
 export default {
   template: require('./files-list-table.html'),
   data: () => ({
@@ -7,5 +9,8 @@ export default {
   }),
   props: {
     filesList: Array
+  },
+  components: {
+    Progress
   }
 }
