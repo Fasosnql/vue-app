@@ -40,9 +40,8 @@ export default {
     },
     uploadFiles() {
       this.uploading = true;
-      let uploaded = 0;
-      let lastUpTime = 0;
       const requests = [];
+
       this.filesList.map((file) => {
         requests.push(
           this.uploadFilesAdapter.uploadFile(file, (e) => {

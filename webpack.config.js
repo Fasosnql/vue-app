@@ -11,11 +11,12 @@ const TsConfigPathsPlugin = require('awesome-typescript-loader').TsConfigPathsPl
  * Env
  * Get npm lifecycle event to identify the environment
  */
-var ENV = process.env.npm_lifecycle_event;
-var isProd = ENV === 'build';
+const ENV = process.env.npm_lifecycle_event;
+const isProd = ENV === 'build';
+const isTest = ENV === 'test';
 
 module.exports = {
-  entry: './src/app.ts',
+  entry: isTest ? void 0 : './src/app.ts',
   module: {
     rules: [
       {
