@@ -11,6 +11,7 @@ describe('read exif data', () => {
 
     const array = readExifData(mockData);
     assert.typeOf(array, 'array');
+    assert.typeOf(array[0], 'object');
     assert.lengthOf(array, 2);
   });
 });
